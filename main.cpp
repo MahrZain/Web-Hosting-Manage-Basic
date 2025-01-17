@@ -133,6 +133,8 @@ back:
 
 int main()
 {
+    User_Info Accounts[20];
+    int index = 0;
     User_Info info[2]; Domain  domain; Billing customer; hosting h;
     int user_choice, length = 0, dhm_choice, h_plain_choice = 0;
     bool dot, dot2;
@@ -382,6 +384,7 @@ int main()
             cout << endl;
             cout << endl;
             cout << "\n========================  FINAL BILL  ========================\n";
+            cout << "Owner Name: " << info[0].name<<endl;
             cout << "-------------------------------------------------------------\n";
             cout << "Billing Name        : " << customer.fname << " " << customer.lname << endl;
             cout << "Billing Email       : " << customer.bemail << endl;
@@ -409,8 +412,8 @@ int main()
            
 
         }
+    }
 
-}
 
 
 
