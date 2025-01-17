@@ -1,6 +1,6 @@
 #include <iostream>
-//#include "info.h"
 using namespace std;
+
 struct User_Info {
     char name[10];
     char Address[20];
@@ -10,12 +10,28 @@ struct User_Info {
 };
 struct Domain {
     char name[20];
-    
+
 };
 struct hosting {
     int price[15];
     char name[40];
 };
+struct Billing {
+    char fname[20];
+    char lname[20];
+    char bemail[50];
+    char bphone[15];
+    char street[50];
+    char city[30];
+    char state[30];
+    char zip[10];
+    char country[30];
+    char payment_method[30];
+    char payment_status[35];
+    float total_amount;
+    char currency[30];
+};
+
 void User_information() {
     int length = 0;
     User_Info info[2];
@@ -44,75 +60,93 @@ phone_back:
     cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
     cout << endl;
 }
-struct Billing {
-    char fname[20];
-    char lname[20];
-    char bemail[50];
-    char bphone[15];
-    char street[50];
-    char city[30];
-    char state[30];
-    char zip[10];
-    char country[30];
-    char payment_method[30];
-    char payment_status[35];
-    float total_amount;
-    char currency[30];
-};
+int hosting_plans() {
+    int h_plain_choice = 0;
+    cout << "------------------------------------------------------" << endl;
+    cout << endl;
+    cout << "\tHosting Management" << endl;
+    cout << endl;
+    cout << "------------------------------------------------------" << endl;
+    cout << endl;
+    cout << "| Plan Name        | Price per Month | Storage  | Bandwidth  |" << endl;
+    cout << "------------------------------------------------------" << endl;
+    cout << "| 1 ==> Basic Plan       | RS.250           | 10GB     | 100GB      |" << endl;
+    cout << "| 2 ==> Standard Plan    | RS.950           | 50GB     | 500GB      |" << endl;
+    cout << "| 3 ==> Premium Plan     | RS.1950          | 200GB    | Unlimited  |" << endl;
+    cout << "------------------------------------------------------" << endl;
+    cout << "Enter Your Choice: ";
+    cin >> h_plain_choice;
+
+    while (h_plain_choice < 1 || h_plain_choice > 3) {
+        cout << "Invalid Input! Try AGAIN!" << endl;
+        cin >> h_plain_choice;
+    }
+
+    return h_plain_choice;
+}
+int domain_options() {
+    int sub_choice = 0;
+    cout << "Please Choose Your Domain" << endl;
+    cout << endl;
+    cout << "------------------------------------------------" << endl;
+    cout << endl;
+
+    do {
+        cout << "1 ==> Register New Domain" << endl;
+        cout << "2 ==> Use Existing Domain" << endl;
+        cout << "3 ==> Go Back to Main Menu" << endl;
+        cout << "Enter Your Choice: ";
+        cin >> sub_choice;
+        if (sub_choice < 1 || sub_choice > 3) {
+            cout << "Invalid Input Plz Try Again!" << endl;
+        }
+    } while (sub_choice < 1 || sub_choice > 3);
 
 
-int main()
-{
-    User_Info info[2];
-    Domain  domain;
-    Billing customer;
-    hosting h;
-    int user_choice, length=0, dhm_choice, h_plain_choice=0;
-    bool dot,dot2;
+    return sub_choice;
+}
+int main_menu() {
+    int user_choice=0;
     cout << endl;
     cout << "------------------------------------------------------" << endl;
     cout << "\tWelcome To Premium Web Hosting" << endl;
     cout << "------------------------------------------------------" << endl;
     cout << endl;
-    while (true) {
-        cout << "==================================================" << endl;
-        cout << "\t1 ==> Your Information\n" << endl;
-        cout << "\t2 ==> Hosting Plan's\n" << endl;
-        cout << "\t3 ==> Domain Management\n" << endl;
-        cout << "\t4 ==> Billing Detail's\n" << endl;
-    back:
-        cout << "Enter Your Choice: ";
-        cin >> user_choice;
-        if (user_choice != 4 && user_choice > 4) {
-            cout << endl;
-            cout << "Wrong Choice! Please TRY AGAIN" << endl;
-            cout << endl;
-            goto back;
-        }
-        else if (user_choice == 1) {
+    cout << "==================================================" << endl;
+    cout << "\t1 ==> Your Information\n" << endl;
+    cout << "\t2 ==> Hosting Plan's\n" << endl;
+    cout << "\t3 ==> Domain Management\n" << endl;
+    cout << "\t4 ==> Billing Detail's\n" << endl;
+back:
+    cout << "Enter Your Choice: ";
+    cin >> user_choice;
+    if (user_choice != 4 && user_choice > 4) {
+        cout << endl;
+        cout << "Wrong Choice! Please TRY AGAIN" << endl;
+        cout << endl;
+        goto back;
+    }
+    return user_choice;
+}
+
+
+
+int main()
+{
+    User_Info info[2]; Domain  domain; Billing customer; hosting h;
+    int user_choice, length = 0, dhm_choice, h_plain_choice = 0;
+    bool dot, dot2;
+
+    main_back:
+    user_choice = main_menu();
+    
+        if (user_choice == 1) {
             User_information();
+            goto main_back;
+                }
 
-        }
         else if (user_choice == 2) {
-            cout << "------------------------------------------------------" << endl;
-            cout << endl;
-            cout << "\tHosting Management" << endl;
-            cout << endl;
-            cout << "------------------------------------------------------" << endl;
-            cout << endl;
-            cout << "| Plan Name        | Price per Month | Storage  | Bandwidth  |" << endl;
-            cout << "------------------------------------------------------" << endl;
-            cout << "| 1 ==> Basic Plan       | RS.250           | 10GB     | 100GB      |" << endl;
-            cout << "| 2 ==> Standard Plan    | RS.950           | 50GB     | 500GB      |" << endl;
-            cout << "| 3 ==> Premium Plan     | RS.1950          | 200GB    | Unlimited  |" << endl;
-            cout << "------------------------------------------------------" << endl;
-            cout << "Enter Your Choice: ";
-            cin >> h_plain_choice;
-
-            while (h_plain_choice < 1 || h_plain_choice > 3) {
-                cout << "Invalid Input! Try AGAIN!" << endl;
-                cin >> h_plain_choice;
-            }
+            h_plain_choice = hosting_plans();
 
             if (h_plain_choice == 1) {
                 cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
@@ -188,83 +222,72 @@ int main()
                 cout << "Bandwidth: Unlimited" << endl;
                 cout << endl;
             }
+            goto main_back;
         }
 
         else if (user_choice == 3) {
-            int sub_choice;
-            cout << "Please Choose Your Domain" << endl;
-            cout << endl;
-            cout << "------------------------------------------------" << endl;
-            cout << endl;
+            int sub_choice = 0;
+            sub_choice = domain_options();
 
-            while (true) {  
-                cout << "1 ==> Register New Domain" << endl;
-                cout << "2 ==> Use Existing Domain" << endl;
-                cout << "3 ==> Go Back to Main Menu" << endl;
-                cout << "Enter Your Choice: ";
-                cin >> sub_choice;
+            if (sub_choice == 1) {
+                do {
+                    dot = false;
+                    cout << "Please Enter a New Domain Name (without http,www): ";
+                    cin >> domain.name;
 
-                if (sub_choice == 1) {
-                    do {
-                        dot = false;
-                        cout << "Please Enter a New Domain Name (without http,www): ";
-                        cin >> domain.name;
-
-                        for (int i = 0; i < 20; i++) {
-                            if (domain.name[i] == '.') {
-                                dot = true;
-                                break;
-                            }
+                    for (int i = 0; i < 20; i++) {
+                        if (domain.name[i] == '.') {
+                            dot = true;
+                            break;
                         }
+                    }
 
-                        if (dot != true) {
-                            cout << "Please Enter a Valid Domain Name. Try Again!" << endl;
-                        }
+                    if (dot != true) {
+                        cout << "Please Enter a Valid Domain Name. Try Again!" << endl;
+                    }
 
-                    } while (dot != true);
-                    cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
-                    cout << "New Domain Registered: " << domain.name << endl;
-                    cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
-                    break;
-                }
+                } while (dot != true);
+                cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+                cout << "New Domain Registered: " << domain.name << endl;
+                cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
 
-                else if (sub_choice == 2) {
-                    do {
-                        dot2 = false;
-                        cout << "Please Enter Your Existing Domain Name: ";
-                        cin >> domain.name;
-
-                        for (int i = 0; i < 20; i++) {
-                            if (domain.name[i] == '.') {
-                                dot2 = true;
-                                break;
-                            }
-                        }
-
-                        if (dot2 != true) {
-                            cout << "Please Enter a Valid Domain Name. Try Again!" << endl;
-                        }
-
-                    } while (dot2 != true);
-                    cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
-                    cout << "Existing Domain Accepted: " << domain.name << endl;
-                    cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
-                }
-
-                else if (sub_choice == 3) {
-                    cout << "Returning to Main Menu..." << endl;
-                    break;  
-                }
-
-                else {
-                    cout << "Invalid Choice! Please Try Again." << endl;
-                }
+                
             }
 
-            cout << "You are now back in the Main Menu." << endl;
+            else if (sub_choice == 2) {
+                do {
+                    dot2 = false;
+                    cout << "Please Enter Your Existing Domain Name: ";
+                    cin >> domain.name;
+
+                    for (int i = 0; i < 20; i++) {
+                        if (domain.name[i] == '.') {
+                            dot2 = true;
+                            break;
+                        }
+                    }
+
+                    if (dot2 != true) {
+                        cout << "Please Enter a Valid Domain Name. Try Again!" << endl;
+                    }
+
+                } while (dot2 != true);
+                cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+                cout << "Existing Domain Accepted: " << domain.name << endl;
+                cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+            }
+
+            else if (sub_choice == 3) {
+                cout << "Returning to Main Menu..." << endl;
+                
+            }
+
+            else {
+                cout << "Invalid Choice! Please Try Again." << endl;
+            }
+            goto main_back;
         }
-           
-        
+
         else if (user_choice == 4) {
             cout << endl;
             cout << "Enter Your Billing Detail's" << endl;
@@ -310,8 +333,8 @@ int main()
             customer.payment_method[8] = 'r';
             customer.payment_method[9] = 'd';
             customer.payment_method[10] = '\0';
-                cout << customer.payment_method;
-            
+            cout << customer.payment_method;
+
             cout << endl;
 
             cout << "Payment Status: ";
@@ -322,8 +345,8 @@ int main()
             customer.payment_status[4] = 'i';
             customer.payment_status[5] = 'd';
             customer.payment_status[6] = '\0';
-               cout<< customer.payment_status;
-            
+            cout << customer.payment_status;
+
             cout << endl;
 
             cout << "Enter Total Amount: ";
@@ -334,8 +357,8 @@ int main()
             customer.currency[1] = 'K';
             customer.currency[2] = 'R';
             customer.currency[3] = '\0';
-                cout << customer.currency;
-            
+            cout << customer.currency;
+
             cout << endl;
 
             cout << "\n--- Billing Information ---\n";
@@ -348,7 +371,7 @@ int main()
             cout << "Total Amount: " << h.price[0] << " " << customer.currency << endl;
             cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
             cout << endl;
-            cout << "Billing Info Saved!"<<endl;
+            cout << "Billing Info Saved!" << endl;
             cout << endl;
             cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
             cout << endl;
@@ -373,7 +396,7 @@ int main()
             cout << "Payment Method      : " << customer.payment_method << endl;
             cout << "Payment Status      : " << customer.payment_status << endl;
             cout << "-------------------------------------------------------------\n";
-            cout << "TOTAL AMOUNT        : " << h.price[0]+domain_price << " " << customer.currency << endl;
+            cout << "TOTAL AMOUNT        : " << h.price[0] + domain_price << " " << customer.currency << endl;
             cout << "-------------------------------------------------------------\n";
             cout << "Thank you for choosing our services!\n";
             cout << "=============================================================\n\n";
@@ -383,16 +406,12 @@ int main()
             cout << endl;
             cout << endl;
             cout << endl;
-            break;
+           
+
         }
 
-
-        else {
-            cout << "Exiting The Program....." << endl;
-            break;
-        }
-    }
 }
+
 
 
 
