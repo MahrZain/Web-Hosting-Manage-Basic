@@ -2,11 +2,11 @@
 using namespace std;
 
 struct User_Info {
-    char name[10];
+    char name[20];
     char Address[20];
     char email[30];
-    char phone[15];
-    char DOB[10];
+    char phone[30];
+    char DOB[20];
 };
 struct Domain {
     char name[20];
@@ -32,20 +32,21 @@ struct Billing {
     char currency[30];
 };
 
+
 void User_information() {
     int length = 0;
-    User_Info info[2];
+    User_Info info;
     cout << "Enter Your Name: ";
-    cin >> info[0].name;
+    cin >> info.name;
     cout << "Enter Your Address: ";
-    cin >> info[0].Address;
+    cin >> info.Address;
     cout << "Enter Your Email: ";
-    cin >> info[0].email;
+    cin >> info.email;
 phone_back:
     cout << "Enter Your Phone No #: ";
-    cin >> info[0].phone;
+    cin >> info.phone;
     for (int i = 0; i < 11;i++) {
-        if (info[0].phone[i] < 11) {
+        if (info.phone[i] < 11) {
             length++;
             if (length != 11) {
                 cout << "Please Enter Valid Number! ";
@@ -54,7 +55,7 @@ phone_back:
         }
     }
     cout << "Enter Your Date of Birth (DD/MM/YYYY): ";
-    cin >> info[0].DOB;
+    cin >> info.DOB;
     cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
     cout << "\tInformation Saved Successfull" << endl;
     cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
@@ -106,7 +107,7 @@ int domain_options() {
     return sub_choice;
 }
 int main_menu() {
-    int user_choice=0;
+    int user_choice = 0;
     cout << endl;
     cout << "------------------------------------------------------" << endl;
     cout << "\tWelcome To Premium Web Hosting" << endl;
@@ -120,7 +121,7 @@ int main_menu() {
 back:
     cout << "Enter Your Choice: ";
     cin >> user_choice;
-    if (user_choice != 4 && user_choice > 4) {
+    if (user_choice != 4 && user_choice > 6) {
         cout << endl;
         cout << "Wrong Choice! Please TRY AGAIN" << endl;
         cout << endl;
@@ -135,17 +136,18 @@ int main()
 {
     User_Info Accounts[20];
     int index = 0;
-    User_Info info[2]; Domain  domain; Billing customer; hosting h;
-    int user_choice, length = 0, dhm_choice, h_plain_choice = 0;
-    bool dot, dot2;
+    for (; index < 10; index++) {
+        User_Info info[2]; Domain  domain[20]; Billing customer[20]; hosting h[20];
+        int user_choice, length = 0, users = 0, dhm_choice, h_plain_choice = 0;
+        bool dot, dot2;
 
     main_back:
-    user_choice = main_menu();
-    
+        user_choice = main_menu();
+
         if (user_choice == 1) {
             User_information();
             goto main_back;
-                }
+        }
 
         else if (user_choice == 2) {
             h_plain_choice = hosting_plans();
@@ -155,19 +157,19 @@ int main()
                 cout << endl;
                 cout << "You Select For Basic Plan" << endl;
                 cout << "Price: Rs. 250" << endl;
-                h.price[0] = 250;
+                h[users].price[0] = 250;
 
-                h.name[0] = 'B';
-                h.name[1] = 'a';
-                h.name[2] = 's';
-                h.name[3] = 'i';
-                h.name[4] = 'c';
-                h.name[5] = ' ';
-                h.name[6] = 'P';
-                h.name[7] = 'l';
-                h.name[8] = 'a';
-                h.name[9] = 'n';
-                h.name[10] = '\0';
+                h[users].name[0] = 'B';
+                h[users].name[1] = 'a';
+                h[users].name[2] = 's';
+                h[users].name[3] = 'i';
+                h[users].name[4] = 'c';
+                h[users].name[5] = ' ';
+                h[users].name[6] = 'P';
+                h[users].name[7] = 'l';
+                h[users].name[8] = 'a';
+                h[users].name[9] = 'n';
+                h[users].name[10] = '\0';
 
                 cout << "Storage: 10GB" << endl;
                 cout << "Bandwidth: 100GB" << endl;
@@ -179,22 +181,22 @@ int main()
                 cout << "You Select For Standard Plan" << endl;
                 cout << "Price: Rs. 950" << endl;
                 cout << "Storage: 50GB" << endl;
-                h.price[0] = 950;
+                h[users].price[0] = 950;
 
-                h.name[0] = 'S';
-                h.name[1] = 't';
-                h.name[2] = 'a';
-                h.name[3] = 'n';
-                h.name[4] = 'd';
-                h.name[5] = 'a';
-                h.name[6] = 'r';
-                h.name[7] = 'd';
-                h.name[8] = ' ';
-                h.name[9] = 'P';
-                h.name[10] = 'l';
-                h.name[11] = 'a';
-                h.name[12] = 'n';
-                h.name[13] = '\0';
+                h[users].name[0] = 'S';
+                h[users].name[1] = 't';
+                h[users].name[2] = 'a';
+                h[users].name[3] = 'n';
+                h[users].name[4] = 'd';
+                h[users].name[5] = 'a';
+                h[users].name[6] = 'r';
+                h[users].name[7] = 'd';
+                h[users].name[8] = ' ';
+                h[users].name[9] = 'P';
+                h[users].name[10] = 'l';
+                h[users].name[11] = 'a';
+                h[users].name[12] = 'n';
+                h[users].name[13] = '\0';
 
                 cout << "Bandwidth: 500GB" << endl;
                 cout << endl;
@@ -205,27 +207,29 @@ int main()
                 cout << "You Select For Premium Plan" << endl;
                 cout << "Price: Rs. 1950" << endl;
                 cout << "Storage: 200GB" << endl;
-                h.price[0] = 1950;
+                h[users].price[0] = 1950;
 
-                h.name[0] = 'P';
-                h.name[1] = 'r';
-                h.name[2] = 'e';
-                h.name[3] = 'm';
-                h.name[4] = 'i';
-                h.name[5] = 'u';
-                h.name[6] = 'm';
-                h.name[7] = ' ';
-                h.name[8] = 'P';
-                h.name[9] = 'l';
-                h.name[10] = 'a';
-                h.name[11] = 'n';
-                h.name[12] = '\0';
-
-                cout << "Bandwidth: Unlimited" << endl;
-                cout << endl;
+                h[users].name[0] = 'P';
+                h[users].name[1] = 'r';
+                h[users].name[2] = 'e';
+                h[users].name[3] = 'm';
+                h[users].name[4] = 'i';
+                h[users].name[5] = 'u';
+                h[users].name[6] = 'm';
+                h[users].name[7] = ' ';
+                h[users].name[8] = 'P';
+                h[users].name[9] = 'l';
+                h[users].name[10] = 'a';
+                h[users].name[11] = 'n';
+                h[users].name[12] = '\0';
             }
+
+
+            cout << "Bandwidth: Unlimited" << endl;
+            cout << endl;
             goto main_back;
         }
+
 
         else if (user_choice == 3) {
             int sub_choice = 0;
@@ -235,10 +239,10 @@ int main()
                 do {
                     dot = false;
                     cout << "Please Enter a New Domain Name (without http,www): ";
-                    cin >> domain.name;
+                    cin >> domain[users].name;
 
                     for (int i = 0; i < 20; i++) {
-                        if (domain.name[i] == '.') {
+                        if (domain[users].name[i] == '.') {
                             dot = true;
                             break;
                         }
@@ -250,20 +254,20 @@ int main()
 
                 } while (dot != true);
                 cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
-                cout << "New Domain Registered: " << domain.name << endl;
+                cout << "New Domain Registered: " << domain[users].name << endl;
                 cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
 
-                
+
             }
 
             else if (sub_choice == 2) {
                 do {
                     dot2 = false;
                     cout << "Please Enter Your Existing Domain Name: ";
-                    cin >> domain.name;
+                    cin >> domain[users].name;
 
                     for (int i = 0; i < 20; i++) {
-                        if (domain.name[i] == '.') {
+                        if (domain[users].name[i] == '.') {
                             dot2 = true;
                             break;
                         }
@@ -275,13 +279,13 @@ int main()
 
                 } while (dot2 != true);
                 cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
-                cout << "Existing Domain Accepted: " << domain.name << endl;
+                cout << "Existing Domain Accepted: " << domain[users].name << endl;
                 cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
             }
 
             else if (sub_choice == 3) {
                 cout << "Returning to Main Menu..." << endl;
-                
+
             }
 
             else {
@@ -291,86 +295,87 @@ int main()
         }
 
         else if (user_choice == 4) {
+
             cout << endl;
             cout << "Enter Your Billing Detail's" << endl;
             cout << endl;
             cout << "----------------------------------------------";
             cout << endl;
             cout << "Enter First Name: ";
-            cin >> customer.fname;
+            cin >> customer[users].fname;
 
             cout << "Enter Last Name: ";
-            cin >> customer.lname;
+            cin >> customer[users].lname;
 
             cout << "Enter Personal Email: ";
-            cin >> customer.bemail;
+            cin >> customer[users].bemail;
 
             cout << "Enter Phone No#: ";
-            cin >> customer.bphone;
+            cin >> customer[users].bphone;
 
             cout << "Enter Street Address: ";
-            cin >> customer.street;
+            cin >> customer[users].street;
 
             cout << "Enter City: ";
-            cin >> customer.city;
+            cin >> customer[users].city;
 
             cout << "Enter State: ";
-            cin >> customer.state;
+            cin >> customer[users].state;
 
             cout << "Enter ZIP Code: ";
-            cin >> customer.zip;
+            cin >> customer[users].zip;
 
             cout << "Enter Country: ";
-            cin >> customer.country;
+            cin >> customer[users].country;
 
             cout << "Payment Method: ";
-            customer.payment_method[0] = 'D';
-            customer.payment_method[1] = 'e';
-            customer.payment_method[2] = 'b';
-            customer.payment_method[3] = 'i';
-            customer.payment_method[4] = 't';
-            customer.payment_method[5] = ' ';
-            customer.payment_method[6] = 'C';
-            customer.payment_method[7] = 'a';
-            customer.payment_method[8] = 'r';
-            customer.payment_method[9] = 'd';
-            customer.payment_method[10] = '\0';
-            cout << customer.payment_method;
+            customer[users].payment_method[0] = 'D';
+            customer[users].payment_method[1] = 'e';
+            customer[users].payment_method[2] = 'b';
+            customer[users].payment_method[3] = 'i';
+            customer[users].payment_method[4] = 't';
+            customer[users].payment_method[5] = ' ';
+            customer[users].payment_method[6] = 'C';
+            customer[users].payment_method[7] = 'a';
+            customer[users].payment_method[8] = 'r';
+            customer[users].payment_method[9] = 'd';
+            customer[users].payment_method[10] = '\0';
+            cout << customer[users].payment_method;
 
             cout << endl;
 
             cout << "Payment Status: ";
-            customer.payment_status[0] = 'U';
-            customer.payment_status[1] = 'n';
-            customer.payment_status[2] = 'p';
-            customer.payment_status[3] = 'a';
-            customer.payment_status[4] = 'i';
-            customer.payment_status[5] = 'd';
-            customer.payment_status[6] = '\0';
-            cout << customer.payment_status;
+            customer[users].payment_status[0] = 'U';
+            customer[users].payment_status[1] = 'n';
+            customer[users].payment_status[2] = 'p';
+            customer[users].payment_status[3] = 'a';
+            customer[users].payment_status[4] = 'i';
+            customer[users].payment_status[5] = 'd';
+            customer[users].payment_status[6] = '\0';
+            cout << customer[users].payment_status;
 
             cout << endl;
 
-            cout << "Enter Total Amount: ";
-            cin >> customer.total_amount;
+            // cout << "Enter Total Amount: ";
+            // cin >> customer[users].total_amount;
 
             cout << "Currency: ";
-            customer.currency[0] = 'P';
-            customer.currency[1] = 'K';
-            customer.currency[2] = 'R';
-            customer.currency[3] = '\0';
-            cout << customer.currency;
+            customer[users].currency[0] = 'P';
+            customer[users].currency[1] = 'K';
+            customer[users].currency[2] = 'R';
+            customer[users].currency[3] = '\0';
+            cout << customer[users].currency;
 
             cout << endl;
 
             cout << "\n--- Billing Information ---\n";
-            cout << "Name: " << customer.fname << " " << customer.lname << endl;
-            cout << "Email: " << customer.bemail << endl;
-            cout << "Phone: " << customer.bphone << endl;
-            cout << "Address: " << customer.street << ", " << customer.city << ", " << customer.state << ", " << customer.zip << ", " << customer.country << endl;
-            cout << "Payment Method: " << customer.payment_method << endl;
-            cout << "Payment Status: " << customer.payment_status << endl;
-            cout << "Total Amount: " << h.price[0] << " " << customer.currency << endl;
+            cout << "Name: " << customer[users].fname << " " << customer[users].lname << endl;
+            cout << "Email: " << customer[users].bemail << endl;
+            cout << "Phone: " << customer[users].bphone << endl;
+            cout << "Address: " << customer[users].street << ", " << customer[users].city << ", " << customer[users].state << ", " << customer[users].zip << ", " << customer[users].country << endl;
+            cout << "Payment Method: " << customer[users].payment_method << endl;
+            cout << "Payment Status: " << customer[users].payment_status << endl;
+            cout << "Total Amount: " << h[users].price[0] << " " << customer[users].currency << endl;
             cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
             cout << endl;
             cout << "Billing Info Saved!" << endl;
@@ -384,22 +389,22 @@ int main()
             cout << endl;
             cout << endl;
             cout << "\n========================  FINAL BILL  ========================\n";
-            cout << "Owner Name: " << info[0].name<<endl;
+            cout << "Owner Name: " << info[0].name << endl;
             cout << "-------------------------------------------------------------\n";
-            cout << "Billing Name        : " << customer.fname << " " << customer.lname << endl;
-            cout << "Billing Email       : " << customer.bemail << endl;
-            cout << "Billing Phone       : " << customer.bphone << endl;
-            cout << "Billing Address     : " << customer.street << ", " << customer.city << ", "
-                << customer.state << ", " << customer.zip << ", " << customer.country << endl;
+            cout << "Billing Name        : " << customer[users].fname << " " << customer[users].lname << endl;
+            cout << "Billing Email       : " << customer[users].bemail << endl;
+            cout << "Billing Phone       : " << customer[users].bphone << endl;
+            cout << "Billing Address     : " << customer[users].street << ", " << customer[users].city << ", "
+                << customer[users].state << ", " << customer[users].zip << ", " << customer[users].country << endl;
             cout << "-------------------------------------------------------------\n";
-            cout << "Hosting Plan Name : " << h.name << " " << endl;
+            cout << "Hosting Plan Name : " << h[users].name << " " << endl;
             int domain_price = 2500;
-            cout << "Hosting Plan Amount : " << h.price[0] << " " << customer.currency << endl;
+            cout << "Hosting Plan Amount : " << h[users].price[0] << " " << customer[users].currency << endl;
             cout << "Domain Price (FIXED) : " << "RS. " << domain_price << " " << endl;
-            cout << "Payment Method      : " << customer.payment_method << endl;
-            cout << "Payment Status      : " << customer.payment_status << endl;
+            cout << "Payment Method      : " << customer[users].payment_method << endl;
+            cout << "Payment Status      : " << customer[users].payment_status << endl;
             cout << "-------------------------------------------------------------\n";
-            cout << "TOTAL AMOUNT        : " << h.price[0] + domain_price << " " << customer.currency << endl;
+            cout << "TOTAL AMOUNT        : " << h[users].price[0] + domain_price << " " << customer[users].currency << endl;
             cout << "-------------------------------------------------------------\n";
             cout << "Thank you for choosing our services!\n";
             cout << "=============================================================\n\n";
@@ -407,13 +412,36 @@ int main()
             cout << endl;
             cout << endl;
             cout << endl;
+            users++;
             cout << endl;
             cout << endl;
-           
+            goto main_back;
+        }
+
+        else if (user_choice == 5) {
+            cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+            cout << "\tAll Saved Users" << endl;
+            cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+
+            for (int i = 0; i < users; i++) {
+                cout << "User #" << i + 1 << endl;
+                cout << "Name: " << customer[i].fname << endl;
+                cout << "Email: " << customer[i].bemail << endl;
+                cout << "Payment Status: " << customer[i].payment_status << endl;
+                cout << "Country: " << customer[i].country << endl;
+                cout << "Plan: " << h[i].name << endl;
+                cout << "Bill: " << "Rs. " << h[i].price[0] + 2500 << endl;
+                cout << "-------------------------------------------" << endl;
+            }
+
+            goto main_back;
 
         }
+
     }
 
+
+}
 
 
 
