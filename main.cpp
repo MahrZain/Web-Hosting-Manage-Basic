@@ -34,30 +34,37 @@ struct Billing {
 
 
 void User_information() {
-    int length = 0;
+    int length = 0; 
     User_Info info;
+
     cout << "Enter Your Name: ";
     cin >> info.name;
+
     cout << "Enter Your Address: ";
     cin >> info.Address;
+
     cout << "Enter Your Email: ";
     cin >> info.email;
-phone_back:
+
+phone_back: 
     cout << "Enter Your Phone No #: ";
     cin >> info.phone;
-    for (int i = 0; i < 11;i++) {
-        if (info.phone[i] < 11) {
-            length++;
-            if (length != 11) {
-                cout << "Please Enter Valid Number! ";
-                goto phone_back;
-            }
-        }
+
+    length = 0;
+    for (int i = 0; info.phone[i] != '\0'; i++) {
+        length++;
     }
+
+    if (length != 11) {
+        cout << "Please Enter Valid Number! (11 digits only)\n";
+        goto phone_back;
+    }
+
     cout << "Enter Your Date of Birth (DD/MM/YYYY): ";
     cin >> info.DOB;
+
     cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
-    cout << "\tInformation Saved Successfull" << endl;
+    cout << "\tInformation Saved Successfully" << endl;
     cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
     cout << endl;
 }
@@ -138,7 +145,7 @@ int main()
     int index = 0;
     for (; index < 10; index++) {
         User_Info info[2]; Domain  domain[20]; Billing customer[20]; hosting h[20];
-        int user_choice, length = 0, users = 0, dhm_choice, h_plain_choice = 0;
+        int user_choice, length_2 = 0, length = 0, users = 0, dhm_choice, h_plain_choice = 0;
         bool dot, dot2;
 
     main_back:
@@ -230,7 +237,6 @@ int main()
             goto main_back;
         }
 
-
         else if (user_choice == 3) {
             int sub_choice = 0;
             sub_choice = domain_options();
@@ -309,9 +315,22 @@ int main()
 
             cout << "Enter Personal Email: ";
             cin >> customer[users].bemail;
-
+        nd_phone:
+            length_2 = 0; 
             cout << "Enter Phone No#: ";
             cin >> customer[users].bphone;
+
+            
+            for (int i = 0; customer[users].bphone[i] != '\0'; i++) {
+                length_2++;
+            }
+
+            
+            if (length_2 != 11) {
+                cout << "Please Enter Valid Number! (11 digits only)\n";
+                goto nd_phone; 
+            }
+
 
             cout << "Enter Street Address: ";
             cin >> customer[users].street;
@@ -356,8 +375,6 @@ int main()
 
             cout << endl;
 
-            // cout << "Enter Total Amount: ";
-            // cin >> customer[users].total_amount;
 
             cout << "Currency: ";
             customer[users].currency[0] = 'P';
