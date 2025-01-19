@@ -406,7 +406,6 @@ int main()
             cout << endl;
             cout << endl;
             cout << "\n========================  FINAL BILL  ========================\n";
-            cout << "Owner Name: " << info[0].name << endl;
             cout << "-------------------------------------------------------------\n";
             cout << "Billing Name        : " << customer[users].fname << " " << customer[users].lname << endl;
             cout << "Billing Email       : " << customer[users].bemail << endl;
