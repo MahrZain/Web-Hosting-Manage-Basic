@@ -125,6 +125,7 @@ int main_menu() {
     cout << "\t2 ==> Hosting Plan's\n" << endl;
     cout << "\t3 ==> Domain Management\n" << endl;
     cout << "\t4 ==> Billing Detail's\n" << endl;
+    cout << "\t5 ==> Saved User's Info\n" << endl;
 back:
     cout << "Enter Your Choice: ";
     cin >> user_choice;
