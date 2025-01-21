@@ -4,12 +4,12 @@ using namespace std;
 struct User_Info {
     char name[20];
     char Address[20];
-    char email[30];
+    char email[40];
     char phone[30];
     char DOB[20];
 };
 struct Domain {
-    char name[20];
+    char name[30];
 
 };
 struct hosting {
@@ -19,7 +19,7 @@ struct hosting {
 struct Billing {
     char fname[20];
     char lname[20];
-    char bemail[50];
+    char bemail[60];
     char bphone[15];
     char street[50];
     char city[30];
@@ -147,7 +147,8 @@ int main()
     for (; index < 10; index++) {
         User_Info info[2]; Domain  domain[20]; Billing customer[20]; hosting h[20];
         int user_choice, length_2 = 0, length = 0, users = 0, dhm_choice, h_plain_choice = 0, currency_choice, payment_choice;
-        bool dot, dot2;
+        float total_bill_currency;
+        bool dot, dot2,is_hosting = false,is_domain=false;
 
     main_back:
         user_choice = main_menu();
@@ -158,6 +159,8 @@ int main()
         }
 
         else if (user_choice == 2) {
+        hosting_false_back:
+            is_hosting = true;
             h_plain_choice = hosting_plans();
 
             if (h_plain_choice == 1) {
@@ -239,6 +242,8 @@ int main()
         }
 
         else if (user_choice == 3) {
+            domain_false_back:
+            is_domain = true;
             int sub_choice = 0;
             sub_choice = domain_options();
 
@@ -302,7 +307,30 @@ int main()
         }
 
         else if (user_choice == 4) {
-
+            if (!is_hosting) {
+                cout << endl;
+                cout << endl;
+                cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"<<endl;
+                cout << endl;
+                cout << "You did not Select Any Hosting Plan Yet! Please Select One Below >>>>>>>"<<endl;
+                cout << endl;
+                cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+                cout << endl;
+                cout << endl;
+                goto hosting_false_back;
+            }
+            if (!is_domain) {
+                cout << endl;
+                cout << endl;
+                cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+                cout << endl;
+                cout << "You did not Select Any Domain Yet! Choose one Below >>>>>>>>>>>>>" << endl;
+                cout << endl;
+                cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+                cout << endl;
+                cout << endl;
+                goto domain_false_back;
+            }
             cout << endl;
             cout << "Enter Your Billing Detail's" << endl;
             cout << endl;
@@ -470,6 +498,9 @@ int main()
             cout << endl;
             cout << endl;
             cout << endl;
+            cout << endl;
+            cout << endl;
+            cout << endl;
             cout << "\n========================  FINAL BILL  ========================\n";
             cout << "-------------------------------------------------------------\n";
             cout << "Billing Name        : " << customer[users].fname << " " << customer[users].lname << endl;
@@ -477,15 +508,24 @@ int main()
             cout << "Billing Phone       : " << customer[users].bphone << endl;
             cout << "Billing Address     : " << customer[users].street << ", " << customer[users].city << ", "
                 << customer[users].state << ", " << customer[users].zip << ", " << customer[users].country << endl;
-            cout << "-------------------------------------------------------------\n";
+            cout << "-------------------------------------------------------------"<<endl;
             cout << "Hosting Plan Name : " << h[users].name << " " << endl;
             int domain_price = 2500;
             cout << "Hosting Plan Amount : " << h[users].price[0] << " " << customer[users].currency << endl;
+            cout << "-------------------------------------------------------------" << endl;
+            cout << "Domain Name: "<< domain[users].name<<endl;
             cout << "Domain Price (FIXED) : " << "RS. " << domain_price << " " << endl;
+            cout << "-------------------------------------------------------------" << endl;
             cout << "Payment Method      : " << customer[users].payment_method << endl;
             cout << "Payment Status      : " << customer[users].payment_status << endl;
             cout << "-------------------------------------------------------------\n";
-            cout << "TOTAL AMOUNT        : " << h[users].price[0] + domain_price << " " << customer[users].currency << endl;
+            if (currency_choice == 2) {
+                total_bill_currency = (h[users].price[0] + domain_price)/280;
+            }
+            else {
+                total_bill_currency = h[users].price[0] + domain_price;
+            }
+            cout << "TOTAL AMOUNT        : " << total_bill_currency << " " << customer[users].currency << endl;
             cout << "-------------------------------------------------------------\n";
             cout << "Thank you for choosing our services!\n";
             cout << "=============================================================\n\n";
