@@ -146,7 +146,7 @@ int main()
     int index = 0;
     for (; index < 10; index++) {
         User_Info info[2]; Domain  domain[20]; Billing customer[20]; hosting h[20];
-        int user_choice, length_2 = 0, length = 0, users = 0, dhm_choice, h_plain_choice = 0;
+        int user_choice, length_2 = 0, length = 0, users = 0, dhm_choice, h_plain_choice = 0, currency_choice, payment_choice;
         bool dot, dot2;
 
     main_back:
@@ -348,19 +348,66 @@ int main()
             cout << "Enter Country: ";
             cin >> customer[users].country;
 
-            cout << "Payment Method: ";
-            customer[users].payment_method[0] = 'D';
-            customer[users].payment_method[1] = 'e';
-            customer[users].payment_method[2] = 'b';
-            customer[users].payment_method[3] = 'i';
-            customer[users].payment_method[4] = 't';
-            customer[users].payment_method[5] = ' ';
-            customer[users].payment_method[6] = 'C';
-            customer[users].payment_method[7] = 'a';
-            customer[users].payment_method[8] = 'r';
-            customer[users].payment_method[9] = 'd';
-            customer[users].payment_method[10] = '\0';
-            cout << customer[users].payment_method;
+            do {
+                cout << "Select Payment Method:\n";
+                cout << "1. Debit Card\n";
+                cout << "2. Credit Card\n";
+                cout << "3. Easypaisa/JazzCash\n";
+                cout << "Enter your choice (1, 2, or 3): ";
+                cin >> payment_choice;
+
+                if (payment_choice == 1) {
+                    customer[users].payment_method[0] = 'D';
+                    customer[users].payment_method[1] = 'e';
+                    customer[users].payment_method[2] = 'b';
+                    customer[users].payment_method[3] = 'i';
+                    customer[users].payment_method[4] = 't';
+                    customer[users].payment_method[5] = ' ';
+                    customer[users].payment_method[6] = 'C';
+                    customer[users].payment_method[7] = 'a';
+                    customer[users].payment_method[8] = 'r';
+                    customer[users].payment_method[9] = 'd';
+                    customer[users].payment_method[10] = '\0';
+                }
+                else if (payment_choice == 2) {
+                    customer[users].payment_method[0] = 'C';
+                    customer[users].payment_method[1] = 'r';
+                    customer[users].payment_method[2] = 'e';
+                    customer[users].payment_method[3] = 'd';
+                    customer[users].payment_method[4] = 'i';
+                    customer[users].payment_method[5] = 't';
+                    customer[users].payment_method[6] = ' ';
+                    customer[users].payment_method[7] = 'C';
+                    customer[users].payment_method[8] = 'a';
+                    customer[users].payment_method[9] = 'r';
+                    customer[users].payment_method[10] = 'd';
+                    customer[users].payment_method[11] = '\0';
+                }
+                else if (payment_choice == 3) {
+                    customer[users].payment_method[0] = 'E';
+                    customer[users].payment_method[1] = 'a';
+                    customer[users].payment_method[2] = 's';
+                    customer[users].payment_method[3] = 'y';
+                    customer[users].payment_method[4] = 'p';
+                    customer[users].payment_method[5] = 'a';
+                    customer[users].payment_method[6] = 'i';
+                    customer[users].payment_method[7] = 's';
+                    customer[users].payment_method[8] = 'a';
+                    customer[users].payment_method[9] = '/';
+                    customer[users].payment_method[10] = 'J';
+                    customer[users].payment_method[11] = 'a';
+                    customer[users].payment_method[12] = 'z';
+                    customer[users].payment_method[13] = 'z';
+                    customer[users].payment_method[14] = 'C';
+                    customer[users].payment_method[15] = 'a';
+                    customer[users].payment_method[16] = 's';
+                    customer[users].payment_method[17] = 'h';
+                    customer[users].payment_method[18] = '\0';
+                }
+                else {
+                    cout << "Invalid choice! Please try again."<<endl;
+                }
+            } while (payment_choice < 1 || payment_choice > 3);
 
             cout << endl;
 
@@ -377,12 +424,29 @@ int main()
             cout << endl;
 
 
-            cout << "Currency: ";
-            customer[users].currency[0] = 'P';
-            customer[users].currency[1] = 'K';
-            customer[users].currency[2] = 'R';
-            customer[users].currency[3] = '\0';
-            cout << customer[users].currency;
+            do {
+                cout << "Select Currency:\n";
+                cout << "1. PKR\n";
+                cout << "2. USD\n";
+                cout << "Enter your choice (1 or 2): ";
+                cin >> currency_choice;
+
+                if (currency_choice == 1) {
+                    customer[users].currency[0] = 'P';
+                    customer[users].currency[1] = 'K';
+                    customer[users].currency[2] = 'R';
+                    customer[users].currency[3] = '\0';
+                }
+                else if (currency_choice == 2) {
+                    customer[users].currency[0] = 'U';
+                    customer[users].currency[1] = 'S';
+                    customer[users].currency[2] = 'D';
+                    customer[users].currency[3] = '\0';
+                }
+                else {
+                    cout << "Invalid choice! Please try again."<<endl;
+                }
+            } while (currency_choice != 1 && currency_choice != 2);
 
             cout << endl;
 
