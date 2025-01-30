@@ -37,7 +37,7 @@ void User_information() {
     int length = 0; 
     User_Info info;
 
-    cout << "Enter Your Name: ";
+    cout << "Enter Your Name ( use - intead of spaces ): ";
     cin >> info.name;
 
     cout << "Enter Your Address: ";
