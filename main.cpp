@@ -33,6 +33,7 @@ struct Billing {
 };
 
 
+int basic_plan = 250,standard_plan = 950,premium_plan = 1950;
 void User_information() {
     int length = 0; 
     User_Info info;
@@ -69,28 +70,74 @@ phone_back:
     cout << endl;
 }
 int hosting_plans() {
-    int h_plain_choice = 0;
-    cout << "------------------------------------------------------" << endl;
-    cout << endl;
-    cout << "\tHosting Management" << endl;
-    cout << endl;
-    cout << "------------------------------------------------------" << endl;
-    cout << endl;
-    cout << "| Plan Name        | Price per Month | Storage  | Bandwidth  |" << endl;
-    cout << "------------------------------------------------------" << endl;
-    cout << "| 1 ==> Basic Plan       | RS.250           | 10GB     | 100GB      |" << endl;
-    cout << "| 2 ==> Standard Plan    | RS.950           | 50GB     | 500GB      |" << endl;
-    cout << "| 3 ==> Premium Plan     | RS.1950          | 200GB    | Unlimited  |" << endl;
-    cout << "------------------------------------------------------" << endl;
-    cout << "Enter Your Choice: ";
-    cin >> h_plain_choice;
+    int sub_hosting,price_plan;
+    do {
+        cout << endl;
+        cout << endl;
+        cout << "Please Select your Choice: \n1 ==> Change Hosting Prices(For Admin Only)\n2 ==> Select Hosting Plan's\n";
+        cout << endl;
+        cout << endl;
+        cin >> sub_hosting;
+        if (sub_hosting > 2 || sub_hosting < 1) {
+            cout << endl;
+            cout << "Please Enter Valid Choice! Try Again!\n";
+            cout << endl;
+        }
+        if (sub_hosting == 1) {
+            do {
+                cout << "Please Set Hosting Plans Prices\n1 ==> For Basic Plan\n 2 ==> For Standard Plan\n 3 ==> For Premium Plan\n";
+                cin >> price_plan;
+                cout << endl;
+                cout << endl;
+                if (price_plan > 3 || price_plan < 1) {
+                    cout << "Please Enter Valid Choice! Try Again!\n";
+                }
+                cout << endl;
+                cout << endl;
+                if (price_plan == 1) {
+                    cout << "Enter New Price of Basic Plan:  ";
+                    cin >> basic_plan;
+                }
+                else if (price_plan == 2) {
+                    cout << "Enter New Price of Standard Plan:  ";
+                    cin >> standard_plan;
+                }
+                else if (price_plan == 3) {
+                    cout << "Enter New Price of Premium Plan:  ";
+                    cin >> premium_plan;
+                }
+                cout << endl;
+                cout << endl;
+                hosting_plans();
+                
+            } while (price_plan < 1 || price_plan > 3);
+            
+        }
+        else if (sub_hosting == 2) {
+            int h_plain_choice = 0;
+            cout << "------------------------------------------------------" << endl;
+            cout << endl;
+            cout << "\tHosting Management" << endl;
+            cout << endl;
+            cout << "------------------------------------------------------" << endl;
+            cout << endl;
+            cout << "| Plan Name        | Price per Month | Storage  | Bandwidth  |" << endl;
+            cout << "------------------------------------------------------" << endl;
+            cout << "| 1 ==> Basic Plan       | "<<basic_plan<<"           | 10GB     | 100GB      |" << endl;
+            cout << "| 2 ==> Standard Plan    | " << standard_plan << "           | 50GB     | 500GB      |" << endl;
+            cout << "| 3 ==> Premium Plan     | " << premium_plan << "          | 200GB    | Unlimited  |" << endl;
+            cout << "------------------------------------------------------" << endl;
+            cout << "Enter Your Choice: ";
+            cin >> h_plain_choice;
 
-    while (h_plain_choice < 1 || h_plain_choice > 3) {
-        cout << "Invalid Input! Try AGAIN!" << endl;
-        cin >> h_plain_choice;
-    }
+            while (h_plain_choice < 1 || h_plain_choice > 3) {
+                cout << "Invalid Input! Try AGAIN!" << endl;
+                cin >> h_plain_choice;
+            }
 
-    return h_plain_choice;
+            return h_plain_choice;
+        }
+    } while (sub_hosting > 2 || sub_hosting < 1);
 }
 int domain_options() {
     int sub_choice = 0;
@@ -167,8 +214,8 @@ int main()
                 cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
                 cout << endl;
                 cout << "You Select For Basic Plan" << endl;
-                cout << "Price: Rs. 250" << endl;
-                h[users].price[0] = 250;
+                cout << "Price: Rs. "<<basic_plan << endl;
+                h[users].price[0] = basic_plan;
 
                 h[users].name[0] = 'B';
                 h[users].name[1] = 'a';
@@ -190,9 +237,9 @@ int main()
                 cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
                 cout << endl;
                 cout << "You Select For Standard Plan" << endl;
-                cout << "Price: Rs. 950" << endl;
+                cout << "Price: Rs. "<<standard_plan << endl;
                 cout << "Storage: 50GB" << endl;
-                h[users].price[0] = 950;
+                h[users].price[0] = standard_plan;
 
                 h[users].name[0] = 'S';
                 h[users].name[1] = 't';
@@ -216,9 +263,9 @@ int main()
                 cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
                 cout << endl;
                 cout << "You Select For Premium Plan" << endl;
-                cout << "Price: Rs. 1950" << endl;
+                cout << "Price: Rs. "<< premium_plan << endl;
                 cout << "Storage: 200GB" << endl;
-                h[users].price[0] = 1950;
+                h[users].price[0] = premium_plan;
 
                 h[users].name[0] = 'P';
                 h[users].name[1] = 'r';
@@ -538,7 +585,7 @@ int main()
             cout << endl;
             goto main_back;
         }
-
+        
         else if (user_choice == 5) {
             cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
             cout << "\tAll Saved Users" << endl;
